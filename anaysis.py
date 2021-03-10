@@ -11,9 +11,9 @@ def get_comment_text(path):
     :param path: csv path, type=str()
     :return: comment in lowercase, type=str()
     '''
-    #TODO: return: toxic=str()
     df = pd.read_csv(path)
-    toxic_df = df[df['toxic'] == 1]
+    df['label']=df.apply(lambda row: 0 if row['toxic']==0 and row['severe_toxic']==0 and row['obscene']== 0 and row['threat']==0 and row['insult']==0 and row['identity_hate']==0 else 1, axis=1)
+    toxic_df = df[df['label'] == 1]
     sent_list = []
     for data in toxic_df.comment_text:
         sent_list.append(data.lower())

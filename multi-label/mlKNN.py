@@ -1,6 +1,6 @@
 from skmultilearn.adapt import MLkNN
 from scipy.sparse import csr_matrix, lil_matrix
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -26,4 +26,5 @@ classifier_new.fit(X_train_dtm, y_train)
 predictions_new = classifier_new.predict(X_test_dtm)
 # accuracy
 print("Accuracy = ",accuracy_score(y_test,predictions_new))
+print("f1_score = ", f1_score(y_test,predictions_new,average='macro'))
 print("\n")
